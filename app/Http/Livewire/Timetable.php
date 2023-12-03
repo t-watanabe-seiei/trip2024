@@ -264,22 +264,22 @@ class Timetable extends Component
     $this->schedule->detail = $this->detail;
     $this->schedule->datetime = $this->date . " " . $this->time;
 
-    logger('image1 : ' . $this->image1);
-    logger('image2 : ' . $this->image2);
-    logger('image3 : ' . $this->image3);
+    // logger('image1 : ' . $this->image1);
+    // logger('image2 : ' . $this->image2);
+    // logger('image3 : ' . $this->image3);
 
-    logger('$this->schedule->image1 : ' . $this->schedule->image1);
-    logger('$this->schedule->image2 : ' . $this->schedule->image2);
-    logger('$this->schedule->image3 : ' . $this->schedule->image3);
+    // logger('$this->schedule->image1 : ' . $this->schedule->image1);
+    // logger('$this->schedule->image2 : ' . $this->schedule->image2);
+    // logger('$this->schedule->image3 : ' . $this->schedule->image3);
 
     // dd($this->images);
 
 
-    if (empty($this->images)) {
-        $this->schedule->image1 = Null;
-        $this->schedule->image2 = Null;
-        $this->schedule->image3 = Null;
-    }else{
+    if ( !is_null($this->image1) || !is_null($this->image2) || !is_null($this->image3)) {
+        $this->schedule->image1 = $this->image1;
+        $this->schedule->image2 = $this->image2;
+        $this->schedule->image3 = $this->image3;
+    }else if(!empty($this->images)){
         $counter = 1;
         foreach ($this->images as $image) {
             $path = pathinfo($image->store('public'), PATHINFO_BASENAME);//ファイル名.拡張子のみ
@@ -300,14 +300,18 @@ class Timetable extends Component
             if($counter >= 3) {break;}    //ファイルアップロードは3つまで
             $counter++;
         }
+    }else{
+      $this->schedule->image1 = Null;
+      $this->schedule->image2 = Null;
+      $this->schedule->image3 = Null;
     }
 
 
-    if (empty($this->files)) {
-        $this->schedule->file1 = Null;
-        $this->schedule->file2 = Null;
-        $this->schedule->file3 = Null;
-    }else{
+    if ( !is_null($this->file1) || !is_null($this->file2) || !is_null($this->file3) ) {
+      $this->schedule->file1 = $this->file1;
+      $this->schedule->file2 = $this->file2;
+      $this->schedule->file3 = $this->file3;
+    }else if(!empty($this->files)){
         $counter = 1;
         foreach ($this->files as $file) {
             $path = pathinfo($file->store('public'), PATHINFO_BASENAME);//ファイル名.拡張子のみ
@@ -328,6 +332,10 @@ class Timetable extends Component
             if($counter >= 3) {break;}    //ファイルアップロードは3つまで
             $counter++;
         }
+    }else{
+      $this->schedule->file1 = Null;
+      $this->schedule->file2 = Null;
+      $this->schedule->file3 = Null;
     }
 
 

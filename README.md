@@ -748,6 +748,20 @@ Laravelプロジェクト直下のpublicフォルダを、公開フォルダに�
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## npm  run dev　　(npm run dev　このコマンドで、「JSやCSSもビルドされる」)
 (※Laravel9.x期間の途中でlaravel-mix → viteに変更なんて破棄的変更を容赦なくやったので初心者は当然混乱。)
 

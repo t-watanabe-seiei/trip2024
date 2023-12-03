@@ -65,7 +65,7 @@
 
 
 
-<div class="container-fluid" style="margin-top: 4em;">　
+<div class="container-fluid" style="margin-top: 3em;">　
 
   <div class="row">
     <h6>ーSCHEDULEー</h6>
