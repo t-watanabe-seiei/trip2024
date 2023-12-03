@@ -17,3 +17,7 @@ Route::get('/', function () {
     return view('welcome');
   // return view('trip');
 });
+
+Route::get('/welcome', function () {
+    return view('welcomeBAK');
+});

@@ -703,8 +703,10 @@ Mixed Content: The page at 'https://(省略)/' was loaded over HTTPS, but reques
 https://chigusa-web.com/blog/xserver-laravel-github/
 ### Xserver にログインして、Laravel用のプロジェクトディレクトリを用意し、Gitクローンを行います。
 
-    $ git clone git@github.com:t-watanabe-seiei/2023trip.git  
     $ git clone git@github.com:t-watanabe-seiei/school-trip.git
+
+### school-tripフォルダに移動
+    $ cd school-trip
 ### Composerパッケージのインストール
     $ composer install
 ### APP_KEYを更新します。
@@ -716,9 +718,11 @@ https://chigusa-web.com/blog/xserver-laravel-github/
 ### 公開ディレクトリの設定
 Laravelプロジェクト直下のpublicフォルダを、公開フォルダに配置します。シンボリックリンクを貼ります。
     $ ln -s /home/seiei9/seiei.online/public_html/trip2023.seiei.online/2023trip/public app
-
+    $ ln -s /home/seiei9/seiei.online/public_html/trip2023.seiei.online/school-trip/public app
 ### laravel-mixとLaravelプラグインのインストール
     npm install
+
+    ※エラーが出たら npm audit fix --force
 
 ### 空のSQLiteデータベース ファイルの作成
     touch database/database.sqlite
