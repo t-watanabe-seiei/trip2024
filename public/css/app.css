@@ -212,7 +212,7 @@ h2 {
 }
 
 /* ここから下がハンバーガーメニューに関するCSS */
-  
+
 /* チェックボックスを非表示にする */
 .drawer_hidden {
   display: none;
@@ -268,7 +268,7 @@ h2 {
   top: 0;
   transform: rotate(-45deg);
 }
-  
+
 /* メニューのデザイン*/
 .nav_content {
   width: 100%;
@@ -309,10 +309,10 @@ h2 {
 .v_line_left {
   border-left: thin solid red;
   padding-left: 10px;
-  
+
   div {
     position: relative;
-    
+
     span {
       display: inline-block;
       width: 5px;
@@ -340,7 +340,7 @@ h1 {
 .clicktxt {
 color:#ffffff;
 background-color: #91acb7;
-padding:10px;
+padding:5px;
 border-radius:20px;
 }
 
@@ -357,7 +357,7 @@ opacity: 0;
 }
 
 .switchdsp input:checked ~ .dsp {
-padding: 0px 25px 0px 25px;
+padding: 10px 25px 0px 25px;
 height: auto;
 opacity: 1;
 }
@@ -371,17 +371,18 @@ opacity: 1;
 } 
 /* time-schedule */
 .time-schedule {
-  min-width: 400px;
-  max-width: 400px;
+  /* min-width: 400px; */
+  /* max-width: 400px; */
   list-style: none;
-  margin: 0 auto 0 6em;
+  margin: 0 auto 0 3em;
+  /* margin: 0 auto 0 6em; */
   padding-left: 20px;
   border-left: 6px solid #a7be18;
   box-sizing: border-box;
 }
 
 .time-schedule li {
-  width: 90%;
+  /* width: 90%; */
   margin: 0 0;
   padding: 5px 0;
   position: relative;
@@ -413,10 +414,11 @@ opacity: 1;
 .time-schedule .sch_box {
   display: inline-block;
   width: 100%;
-  margin-left: 30px;
-  padding: 15px 10px 15px 10px;
+  margin-left: 36px;
+  padding: 10px 10px 10px 10px;
   vertical-align: middle;
-  background: #fffafa;
+  /* background: #fffafa; */
+  background: #cfe3cc;
   box-sizing: border-box;
   border-radius: 6px;
 }

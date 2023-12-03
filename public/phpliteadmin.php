@@ -68,7 +68,7 @@ $subdirectories = false;
 // );
 $databases = array(
 	array(
-		'path'=> '/home/runner/2023trip/database/database.sqlite', 
+		'path'=> '/home/runner/test2/database/database.sqlite', 
 		'name'=> 'main'
 	)
 );
