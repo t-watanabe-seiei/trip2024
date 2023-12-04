@@ -22,7 +22,7 @@
         </li>
 
         <li class="nav-item mx-3">
-          <a class="nav-link disabled">allowance</a>
+          <a class="nav-link disabled btn" role="button" >allowance</a>
         </li>
 
         <li class="nav-item mx-3">
