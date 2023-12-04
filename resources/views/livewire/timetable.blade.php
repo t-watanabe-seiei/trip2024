@@ -408,16 +408,11 @@
 
 
 
-
-
-
-
-
-
-
-                <div class="mb-3 row">
-                  <div class="col-sm-11"><button class="btn btn-primary" type="submit">Save schedule</button></div>
-                  <div class="col-sm-1"><a class="btn btn-sm btn-outline-danger" role="button" wire:click="deleteSchedule({{ $schedule_id }})"><i class="fa-solid fa-trash-can"></i></a></div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">Save schedule</button>
+                    <div class="float-end">
+                      <a class="btn btn-sm btn-outline-danger" role="button" wire:click="deleteSchedule({{ $schedule_id }})"><i class="fa-solid fa-trash-can"></i></a>
+                    </div>
                 </div>
 
 
