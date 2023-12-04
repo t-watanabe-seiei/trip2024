@@ -254,9 +254,8 @@
 
 @if ($isNewScheduleCard)
   <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="new_schedule_card">
-    <h5 class="card-header">new schedule</h5>
+    <h5 class="card-header">new schedule <button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isNewScheduleCard')"></button></h5>
     <div class="card-body">
-      <h5 class="card-title">Insert time schedule</h5>
       <p class="card-text">Please enter the required information.</p>
 
 
@@ -327,9 +326,9 @@
 
 @if ($isEditScheduleCard)
       <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="edit_schedule_card">
-        <h5 class="card-header">edit schedule</h5>
+        <h5 class="card-header">edit schedule<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isEditScheduleCard')"></button></h5>
+        
         <div class="card-body">
-          <h5 class="card-title">edit time schedule</h5>
           <p class="card-text">Please enter the required information.</p>
 
               <form wire:submit.prevent="editSave" id="editSchedule">
