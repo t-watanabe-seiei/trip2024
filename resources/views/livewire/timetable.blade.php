@@ -411,7 +411,8 @@
                 <div class="mb-3">
                     <button class="btn btn-primary" type="submit">Save schedule</button>
                     <div class="float-end">
-                      <a class="btn btn-sm btn-outline-danger" role="button" wire:click="deleteSchedule({{ $schedule_id }})"><i class="fa-solid fa-trash-can"></i></a>
+                      <!--a class="btn btn-sm btn-outline-danger" role="button" wire:click="deleteSchedule({{ $schedule_id }})"><i class="fa-solid fa-trash-can"></i></a-->
+                      <a class="btn btn-sm btn-outline-danger" role="button" onclick="delButtonClick({{ $schedule_id }})"><i class="fa-solid fa-trash-can"></i></a>
                     </div>
                 </div>
 
@@ -514,8 +515,6 @@
 <script>
   //該当日付のアコーディオンを開く
   window.addEventListener('show_accordion', event => {
-      //if(confirm('編集します。よろしいですか？')) {
-          //console.log(event.detail.currentDate);
           let elm = document.getElementById(event.detail.currentDate); 
           if (elm === null){
             // 要素が存在しない場合の処理
@@ -523,10 +522,6 @@
             // 要素が存在する場合の処理
             elm.classList.toggle("show");
           }
-
-
-
-      //}
   });
 
   window.addEventListener('reset_new_shedule', event => {
@@ -543,16 +538,13 @@
           form.reset();
   })
 
-
-  //Editボタンを押した際、画像ファイルor添付ファイルがある場合の、Delボタンの処理
-  function delButtonClick(button){
-    let propName = button.getAttribute('name');
-    if(propName == 'image'){
-      @this.imageDelete();
-    }else if(propName == 'file'){
-      @this.fileDelete();
+  //Editボタンを押した際、ゴミ箱ボタンの処理
+  function delButtonClick(id){
+    if(confirm('削除します。よろしいですか？')) {
+      @this.deleteSchedule(id);
     }
   }
+  
 </script>
 
 
