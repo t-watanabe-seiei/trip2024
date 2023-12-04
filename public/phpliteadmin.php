@@ -68,7 +68,7 @@ $subdirectories = false;
 // );
 $databases = array(
 	array(
-		'path'=> '/home/runner/test2/database/database.sqlite', 
+		'path'=> '/home/runner/seiei-school-trip/database/database.sqlite', 
 		'name'=> 'main'
 	)
 );

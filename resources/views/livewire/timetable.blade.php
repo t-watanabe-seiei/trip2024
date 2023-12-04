@@ -261,35 +261,35 @@
 
           <form wire:submit.prevent="newSave" id="newSchedule">
             <div class="mb-3">
-              <label for="caption" class="form-label">caption</label>
-              <input type="text" class="form-control" name="caption" id="caption" wire:model.defer="caption">
+              <label for="new_caption" class="form-label">caption</label>
+              <input type="text" class="form-control" name="caption" id="new_caption" wire:model.defer="caption">
             </div>
 
             <div class="mb-3">
-              <label for="detail" class="form-label">detail</label>
-              <textarea class="form-control" id="detail" name="detail" rows="5" wire:model.defer="detail"></textarea>
+              <label for="new_detail" class="form-label">detail</label>
+              <textarea class="form-control" id="new_detail" name="detail" rows="5" wire:model.defer="detail"></textarea>
             </div>
 
             <div class="row mb-3">
               <div class="col">
-                <label for="date" class="form-label">date</label>
-                <input type="date" class="form-control" name="date" id="date" wire:model.lazy="date">
+                <label for="new_date" class="form-label">date</label>
+                <input type="date" class="form-control" name="date" id="new_date" wire:model.lazy="date">
               </div>
               <div class="col">
-                <label for="time" class="form-label">time</label>
-                <input type="time" class="form-control" name="time" id="time" wire:model.defer="time">
+                <label for="new_time" class="form-label">time</label>
+                <input type="time" class="form-control" name="time" id="new_time" wire:model.defer="time">
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="images" class="form-label">images</label>
-              <input type="file" wire:model="images" accept=".jpg, .jpeg, .png, .gif" class="form-control" multiple>
+              <label for="new_images" class="form-label">images</label>
+              <input type="file" wire:model="images" id="new_images" accept=".jpg, .jpeg, .png, .gif" class="form-control" multiple>
               @error('images.*') <div class="alert alert-danger">{{ $message }}</div> @enderror
             </div> 
 
             <div class="mb-3">
-            <label for="images" class="form-label">files</label>
-                <input type="file" wire:model="files" accept=".pdf, .xlsx, .docx" class="form-control" multiple>
+            <label for="new_files" class="form-label">files</label>
+                <input type="file" wire:model="files" id="new_files" accept=".pdf, .xlsx, .docx" class="form-control" multiple>
                 @error('files.*') <div class="alert alert-danger">{{ $message }}</div> @enderror
             </div>
 
@@ -333,23 +333,23 @@
 
               <form wire:submit.prevent="editSave" id="editSchedule">
                 <div class="mb-3">
-                  <label for="caption" class="form-label">caption</label>
-                  <input type="text" class="form-control" name="caption" id="caption" wire:model.defer="caption">
+                  <label for="edit_caption" class="form-label">caption</label>
+                  <input type="text" class="form-control" name="caption" id="edit_caption" wire:model.defer="caption">
                 </div>
 
                 <div class="mb-3">
-                  <label for="detail" class="form-label">detail</label>
-                  <textarea class="form-control" id="detail" name="detail" rows="5" wire:model.defer="detail"></textarea>
+                  <label for="edit_detail" class="form-label">detail</label>
+                  <textarea class="form-control" id="edit_detail" name="detail" rows="5" wire:model.defer="detail"></textarea>
                 </div>
 
                 <div class="row mb-3">
                   <div class="col">
-                    <label for="date" class="form-label">date</label>
-                    <input type="date" class="form-control" name="date" id="date" wire:model.lazy="date">
+                    <label for="edit_date" class="form-label">date</label>
+                    <input type="date" class="form-control" name="date" id="edit_date" wire:model.lazy="date">
                   </div>
                   <div class="col">
-                    <label for="time" class="form-label">time</label>
-                    <input type="time" class="form-control" name="time" id="time" wire:model.defer="time">
+                    <label for="edit_time" class="form-label">time</label>
+                    <input type="time" class="form-control" name="time" id="edit_time" wire:model.defer="time">
                   </div>
                 </div>
 
@@ -357,7 +357,7 @@
 
                 @if(isset($image1) || isset($image2) || isset($image3))
                   <div class="mb-3">
-                     <div class="col"><label for="images" class="form-label">images</label></div>
+                     <div class="col"><label for="edit_images" class="form-label">images</label></div>
                       <div class="col">
                         @isset($image1)
                           <a href="storage/{{$image1}}" target="_blank"><img src="storage/{{$image1}}" style="width: auto;height: 2em;" alt=""></a>
@@ -373,8 +373,8 @@
                   </div> 
                 @else
                   <div class="mb-3">
-                    <label for="images" class="form-label">images (Up to 3 possible)</label>
-                    <input type="file" wire:model="images" accept=".jpg, .jpeg, .png, .gif" class="form-control" multiple>
+                    <label for="edit_images" class="form-label">images (Up to 3 possible)</label>
+                    <input type="file" wire:model="images" id="edit_images" accept=".jpg, .jpeg, .png, .gif" class="form-control" multiple>
                     @error('images.*') <div class="alert alert-danger">{{ $message }}</div> @enderror
                   </div>
                 @endif
@@ -383,7 +383,7 @@
 
                 @if(isset($file1) || isset($file2) || isset($file3))
                   <div class="mb-3">
-                     <div class="col"><label for="images" class="form-label">files</label></div>
+                     <div class="col"><label for="edit_files" class="form-label">files</label></div>
                       <div class="col">
                         @isset($file1)
                           <a href="storage/{{$file1}}" target="_blank">file1</a>
@@ -399,8 +399,8 @@
                   </div> 
                 @else
                   <div class="mb-3">
-                  <label for="images" class="form-label">files (Up to 3 possible)</label>
-                      <input type="file" wire:model="files" accept=".pdf, .xlsx, .docx" class="form-control" multiple>
+                  <label for="edit_files" class="form-label">files (Up to 3 possible)</label>
+                      <input type="file" wire:model="files" id="edit_files" accept=".pdf, .xlsx, .docx" class="form-control" multiple>
                       @error('files.*') <div class="alert alert-danger">{{ $message }}</div> @enderror
                   </div>
                 @endif

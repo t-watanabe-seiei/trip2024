@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <!--link rel="icon" href="https://glitch.com/favicon.ico" / -->
     <title>たびのしおり</title>
 
 

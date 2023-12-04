@@ -749,16 +749,16 @@ Laravelプロジェクト直下のpublicフォルダを、公開フォルダに�
  ##### を実行すると、config/livewire.php が生成される。config/livewire.phpに以下の記載
     'asset_url' => null,
     // という箇所を
-    
     'asset_url' => env('ASSET_URL', null),
     // と変更します。
-
   ##### 次に本番環境のenvファイルに以下のようにASSET_URLをセットします。
     ASSET_URL="/app"
 
 
 ### シンボリックリンクの作成 以下のコマンドで/public ディレクトリの下に storage ディレクトリが作成され、/storage/app/public へシンボリックリンクが張られます。
       $ php artisan storage:link
+
+
 
 
 
