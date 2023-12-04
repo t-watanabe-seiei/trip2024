@@ -742,12 +742,6 @@ Laravelプロジェクト直下のpublicフォルダを、公開フォルダに�
 プロジェクト直下で以下のコマンドを実行し、NPMパッケージをインストールします。
       $ npm install
 
-## シンボリックリンクの作成
-      $ php artisan storage:link
-を実行します。/public ディレクトリの下に storage ディレクトリが作成され、/storage/app/public へシンボリックリンクが張られます。
-https://2023trip.t-watanabe.repl.co/storage/GN203kejEHXWHH6yomQeo1WGxtiO5ibwQJmlIgHl.pdf
-というように、/strage/ファイル名でアクセス可能
-
 
 ### 本番環境で、サブディレクトリを設置した場合、Livewire.js が 404 Not Found の解決方法
     php artisan livewire:publish --config
@@ -759,10 +753,12 @@ https://2023trip.t-watanabe.repl.co/storage/GN203kejEHXWHH6yomQeo1WGxtiO5ibwQJml
     'asset_url' => env('ASSET_URL', null),
     // と変更します。
 
-  ##### 次に本番環境のenvファイルに以下のようにASSET_URLをセットします。envファイル内のどこに入れてもいいです。
+  ##### 次に本番環境のenvファイルに以下のようにASSET_URLをセットします。
+    ASSET_URL="/app"
 
-    ASSET_URL="/subdir"
 
+### シンボリックリンクの作成 以下のコマンドで/public ディレクトリの下に storage ディレクトリが作成され、/storage/app/public へシンボリックリンクが張られます。
+      $ php artisan storage:link
 
 
 

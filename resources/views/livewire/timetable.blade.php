@@ -121,7 +121,7 @@
                                 data-bs-toggle="modal" 
                                 data-bs-target="#lightboxModalFullscreen" 
                                 data-bs-lightbox="storage/{{ $schedule->image1 }}" role="button">
-                                  <img 
+                                  <img
                                      src="storage/{{ $schedule->image1 }}" 
                                      class="img-fluid img-thumbnail rounded mx-auto d-block w-75"
                                   />
@@ -361,13 +361,13 @@
                      <div class="col"><label for="images" class="form-label">images</label></div>
                       <div class="col">
                         @isset($image1)
-                          <a href="/storage/{{$image1}}" target="_blank"><img src="/storage/{{$image1}}" style="width: auto;height: 2em;" alt=""></a>
+                          <a href="storage/{{$image1}}" target="_blank"><img src="storage/{{$image1}}" style="width: auto;height: 2em;" alt=""></a>
                         @endisset
                         @isset($image2)
-                          <a href="/storage/{{$image2}}" target="_blank"><img src="/storage/{{$image2}}" style="width: auto;height: 2em;" alt=""></a>
+                          <a href="storage/{{$image2}}" target="_blank"><img src="storage/{{$image2}}" style="width: auto;height: 2em;" alt=""></a>
                         @endisset
                         @isset($image3)
-                          <a href="/storage/{{$image3}}" target="_blank"><img src="/storage/{{$image3}}" style="width: auto;height: 2em;" alt=""></a>
+                          <a href="storage/{{$image3}}" target="_blank"><img src="storage/{{$image3}}" style="width: auto;height: 2em;" alt=""></a>
                         @endisset
                         <button type="button" class="btn btn-outline-secondary btn-sm" wire:click="imageDelete()">delete</button>
                       </div>
@@ -387,13 +387,13 @@
                      <div class="col"><label for="images" class="form-label">files</label></div>
                       <div class="col">
                         @isset($file1)
-                          <a href="/storage/{{$file1}}" target="_blank">file1</a>
+                          <a href="storage/{{$file1}}" target="_blank">file1</a>
                         @endisset
                         @isset($file2)
-                          <a href="/storage/{{$file2}}" target="_blank">file2</a>
+                          <a href="storage/{{$file2}}" target="_blank">file2</a>
                         @endisset
                         @isset($file3)
-                          <a href="/storage/{{$file3}}" target="_blank">file3</a>
+                          <a href="storage/{{$file3}}" target="_blank">file3</a>
                         @endisset
                         <button type="button" class="btn btn-outline-secondary btn-sm" wire:click="fileDelete()">delete</button>
                       </div>
