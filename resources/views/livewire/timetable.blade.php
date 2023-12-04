@@ -449,43 +449,74 @@
 
 
 <!--  *****************what to bring カード************************************************ -->
-
 @if ($isWhatToBring)
   <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="new_schedule_card">
-    <h5 class="card-header">What to Bring</h5>
+    <h5 class="card-header">What to Bring<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isWhatToBring')"></button></h5>
     <div class="card-body">
-      <h5 class="card-title">What to Bring</h5>
-      <p class="card-text">Please read information.</p>
+      <h5 class="card-title">Baggage to send in advance</h5>
+        <!-- <p class="card-text">Baggage to send in advance</p> -->
             <div class="mb-3">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="CheckList01">
-                <label class="form-check-label" for="CheckList01">Bring list 01</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList101">
+                <label class="form-check-label" for="CheckList101">Bring list 01</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="CheckList02">
-                <label class="form-check-label" for="CheckList02">Bring list 02</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList102">
+                <label class="form-check-label" for="CheckList102">Bring list 02</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="CheckList03">
-                <label class="form-check-label" for="CheckList03">Bring list 03</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList103">
+                <label class="form-check-label" for="CheckList103">Bring list 03</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="CheckList04">
-                <label class="form-check-label" for="CheckList03">Bring list 04</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList104">
+                <label class="form-check-label" for="CheckList104">Bring list 04</label>
               </div>
             </div>
 
+      <h5 class="card-title">Baggage on the day of travel</h5>
+      
+      <!-- <p class="card-text">Baggage for the day</p> -->
+      <div class="mb-3">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList201">
+          <label class="form-check-label" for="CheckList201">しおり</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList202">
+          <label class="form-check-label" for="CheckList202">健康保険証(可能な限り原本を推奨）　<br/>※コピーは使えない場合あり)</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList203">
+          <label class="form-check-label" for="CheckList203">Bring list 03</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList204">
+          <label class="form-check-label" for="CheckList204">Bring list 04</label>
+        </div>
+      </div>
+      
     </div>
   </div>
 @endif
-
-
-
-
-
 <!-- *******************what to bring カード end********************* -->
 
 
+
+<!--  *****************Introduction カード************************************************ -->
+@if ($isIntroduction)
+  <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="new_schedule_card">
+    <h5 class="card-header">Introduction<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isIntroduction')"></button></h5>
+    <div class="card-body">
+      <h5 class="card-title">Introduction</h5>
+        <p class="card-text">A school trip is a school event that gives us a wide range of knowledge and experiences that cannot be obtained during normal school life.</p>
+
+      <h5 class="card-title">bout clothes</h5>
+        <p class="card-text">A Uniforms will be worn on the first and last day. On other days, you may wear casual clothes.</p>
+    </div>
+  </div>
+@endif
+<!-- *******************Introduction カード end********************* -->
 
 
 
