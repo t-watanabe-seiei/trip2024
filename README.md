@@ -702,9 +702,10 @@ Mixed Content: The page at 'https://(省略)/' was loaded over HTTPS, but reques
 
 https://chigusa-web.com/blog/xserver-laravel-github/
 ### Xserver にログインして、Laravel用のプロジェクトディレクトリを用意し、Gitクローンを行います。
-
     $ git clone git@github.com:t-watanabe-seiei/school-trip.git
-
+### GitHubから最新の「masterブランチ」を取り込む  ( 認証用パスワード必要 )
+    git fetch
+    git pull
 ### school-tripフォルダに移動
     $ cd school-trip
 ### Composerパッケージのインストール
@@ -715,18 +716,15 @@ https://chigusa-web.com/blog/xserver-laravel-github/
     APP_ENV=production
     APP_DEBUG=false
     APP_URL=http://初期ドメイン
+### ひとつ上のフォルダに移動
+    $ cd ../
 ### 公開ディレクトリの設定
 Laravelプロジェクト直下のpublicフォルダを、公開フォルダに配置します。シンボリックリンクを貼ります。
-    $ ln -s /home/seiei9/seiei.online/public_html/trip2023.seiei.online/2023trip/public app
     $ ln -s /home/seiei9/seiei.online/public_html/trip2023.seiei.online/school-trip/public app
 ### laravel-mixとLaravelプラグインのインストール
-    npm install
-
-    ※エラーが出たら npm audit fix --force
-
+    npm install          ※エラーが出たら npm audit fix --force
 ### 空のSQLiteデータベース ファイルの作成
     touch database/database.sqlite
-
 ### あらかじめ登録されたマイグレーションを実行し、テーブル作成(users,password_resets,failed_jobs,personal_access_tokens)
      php artisan migrate
 ### seeder実行 (DatabaseSeederに登録されたSeederが実行される)
@@ -735,20 +733,35 @@ Laravelプロジェクト直下のpublicフォルダを、公開フォルダに�
     $databases = array(
       array(
         'path'=> '/home/runner/2023trip/database/database.sqlite', 
+        'path'=> '/home/seiei9/seiei.online/public_html/trip2023.seiei.online/school-trip/database/database.sqlite',
         'name'=> 'main'
       )
     );
+    
 ### Nodeパッケージのインストールとビルド
 プロジェクト直下で以下のコマンドを実行し、NPMパッケージをインストールします。
       $ npm install
 
+## シンボリックリンクの作成
+      $ php artisan storage:link
+を実行します。/public ディレクトリの下に storage ディレクトリが作成され、/storage/app/public へシンボリックリンクが張られます。
+https://2023trip.t-watanabe.repl.co/storage/GN203kejEHXWHH6yomQeo1WGxtiO5ibwQJmlIgHl.pdf
+というように、/strage/ファイル名でアクセス可能
 
 
+### 本番環境で、サブディレクトリを設置した場合、Livewire.js が 404 Not Found の解決方法
+    php artisan livewire:publish --config
 
+ ##### を実行すると、config/livewire.php が生成される。config/livewire.phpに以下の記載
+    'asset_url' => null,
+    // という箇所を
+    
+    'asset_url' => env('ASSET_URL', null),
+    // と変更します。
 
+  ##### 次に本番環境のenvファイルに以下のようにASSET_URLをセットします。envファイル内のどこに入れてもいいです。
 
-
-
+    ASSET_URL="/subdir"
 
 
 
