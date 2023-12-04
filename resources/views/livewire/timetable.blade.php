@@ -357,7 +357,7 @@
 
                 @if(isset($image1) || isset($image2) || isset($image3))
                   <div class="mb-3">
-                     <div class="col"><label for="edit_images" class="form-label">images</label></div>
+                     <div class="col"><label for="edit_images_btn" class="form-label">images</label></div>
                       <div class="col">
                         @isset($image1)
                           <a href="storage/{{$image1}}" target="_blank"><img src="storage/{{$image1}}" style="width: auto;height: 2em;" alt=""></a>
@@ -368,7 +368,7 @@
                         @isset($image3)
                           <a href="storage/{{$image3}}" target="_blank"><img src="storage/{{$image3}}" style="width: auto;height: 2em;" alt=""></a>
                         @endisset
-                        <button type="button" class="btn btn-outline-secondary btn-sm" wire:click="imageDelete()">delete</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="edit_images_btn" wire:click="imageDelete()">delete</button>
                       </div>
                   </div> 
                 @else
@@ -383,7 +383,7 @@
 
                 @if(isset($file1) || isset($file2) || isset($file3))
                   <div class="mb-3">
-                     <div class="col"><label for="edit_files" class="form-label">files</label></div>
+                     <div class="col"><label for="edit_files_btn" class="form-label">files</label></div>
                       <div class="col">
                         @isset($file1)
                           <a href="storage/{{$file1}}" target="_blank">file1</a>
@@ -394,7 +394,7 @@
                         @isset($file3)
                           <a href="storage/{{$file3}}" target="_blank">file3</a>
                         @endisset
-                        <button type="button" class="btn btn-outline-secondary btn-sm" wire:click="fileDelete()">delete</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="edit_files_btn" wire:click="fileDelete()">delete</button>
                       </div>
                   </div> 
                 @else
