@@ -488,11 +488,11 @@
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList203">
-          <label class="form-check-label" for="CheckList203">Bring list 03</label>
+          <label class="form-check-label" for="CheckList203">財布</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList204">
-          <label class="form-check-label" for="CheckList204">Bring list 04</label>
+          <label class="form-check-label" for="CheckList204">おやつ　３００円まで</label>
         </div>
       </div>
       
