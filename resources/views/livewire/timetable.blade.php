@@ -208,7 +208,7 @@
 
 
 
-                  <p class="text-start mx-5">
+                  <p class="text-start">
                     {!! $schedule->detail !!}
                   </p>
 
@@ -458,7 +458,7 @@
             <div class="mb-3">
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList101">
-                <label class="form-check-label" for="CheckList101">Bring list 01</label>
+                <label class="form-check-label" for="CheckList101">Bring list</label>
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList102">
@@ -471,6 +471,14 @@
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList104">
                 <label class="form-check-label" for="CheckList104">Bring list 04</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList105">
+                <label class="form-check-label" for="CheckList105">Bring list 05</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="CheckList106">
+                <label class="form-check-label" for="CheckList106">Bring list 06</label>
               </div>
             </div>
 
@@ -508,8 +516,8 @@
   <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="new_schedule_card">
     <h5 class="card-header">Introduction<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isIntroduction')"></button></h5>
     <div class="card-body">
-      <h5 class="card-title">Introduction</h5>
-        <p class="card-text">A school trip is a school event that gives us a wide range of knowledge and experiences that cannot be obtained during normal school life.</p>
+      <h5 class="card-title">1. はじめに</h5>
+        <p class="card-text">修学旅行は通常の</p>
 
       <h5 class="card-title">bout clothes</h5>
         <p class="card-text">A Uniforms will be worn on the first and last day. On other days, you may wear casual clothes.</p>
