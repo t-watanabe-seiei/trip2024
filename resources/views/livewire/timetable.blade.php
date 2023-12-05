@@ -91,12 +91,12 @@
 
               <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ Str::before($schedule->datetime, ' ') }}" aria-expanded="false" aria-controls="{{ Str::before($schedule->datetime, ' ') }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id_{{ Str::before($schedule->datetime, ' ') }}" aria-expanded="false" aria-controls="id_{{ Str::before($schedule->datetime, ' ') }}">
                   {{ Str::before($schedule->datetime, ' ') }}   <!-- 半角スペースより左が日付 -->
                 </button>
               </h2>
 
-              <div id="{{ Str::before($schedule->datetime, ' ') }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+              <div id="id_{{ Str::before($schedule->datetime, ' ') }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
 
               <div class="accordion-body">
                 <ul class="time-schedule"> 
@@ -545,7 +545,7 @@
 <script>
   //該当日付のアコーディオンを開く
   window.addEventListener('show_accordion', event => {
-          let elm = document.getElementById(event.detail.currentDate); 
+          let elm = document.getElementById('id_' + event.detail.currentDate); 
           if (elm === null){
             // 要素が存在しない場合の処理
           } else {
