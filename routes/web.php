@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+//   // return view('trip');
+// });
+
+// Route::get('/welcome', function () {
+//     return view('welcomeBAK');
+// });
+
+Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
-  // return view('trip');
+    return view('home');
 });
 
-Route::get('/welcome', function () {
-    return view('welcomeBAK');
-});
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
