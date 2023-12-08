@@ -120,11 +120,7 @@
 
   <div class="row">
     <h6>ーSCHEDULEー</h6>
-    @auth
-      {{-- ログイン中の場合 --}}
-      <h6>{{ Auth::user()->name }}  {{ Auth::user()->id }}  {{ Auth::user()->email }}</h6>
-    @endauth
-
+    
     <div class="col-sm-7">
 <!--  ***********************スケジュールの表示　view***************************************************** -->
 
