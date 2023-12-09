@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Schedule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;    //追記
 
 class Timetable extends Component
 {
@@ -33,10 +35,25 @@ class Timetable extends Component
   public $isWhatToBring = false;
   public $isIntroduction = false;
 
+  public $user_id;
+  public $user_name;
+  public $user_role;
+
   // protected $listeners = ['accordion' => 'openAccordion'];
 
   public function mount(){
-    $this->schedules = Schedule::all()->sortBy('datetime');
+    if ( Auth::check() )     {
+      // ログイン中の場合 ログイン中のユーザーを取得
+      $user = Auth::user();
+      $user_id = $user->id;
+      $user_name = $user->name;
+      $user_role = $user->role;
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+    }else{
+      // 未ログインの場合
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+    }
+    // $this->schedules = Schedule::all()->sortBy('datetime');
     foreach ($this->schedules as $row){
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
@@ -112,7 +129,13 @@ class Timetable extends Component
     $this->schedule->delete();    
     // logger('deleteしました' . $id);
 
-    $this->schedules = Schedule::all()->sortBy('datetime');
+    // $this->schedules = Schedule::all()->sortBy('datetime');
+    if ( Auth::check() ) {
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+    }else{
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+    }
+    
     foreach ($this->schedules as $row){
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
@@ -186,6 +209,12 @@ class Timetable extends Component
       $schedule->caption = $this->caption;
       $schedule->detail = $this->detail;
       $schedule->datetime = $this->date . " " . $this->time;
+      if(Gate::allows('admin')){                   //追記
+        $schedule->user_id = null;                 //追記
+      }else if(Gate::allows('general')){           //追記
+        $schedule->user_id = Auth::user()->id;     //追記
+      }                                            //追記
+
 
       $counter = 1;
       foreach ($this->images as $image) {
@@ -233,7 +262,13 @@ class Timetable extends Component
 
       $schedule->save();
 
-      $this->schedules = Schedule::all()->sortBy('datetime');
+      // $this->schedules = Schedule::all()->sortBy('datetime');
+      if ( Auth::check() ) {
+        $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+      }else{
+        $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+      }
+    
       foreach ($this->schedules as $row){
         //URL抽出の正規表現
         $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
@@ -342,7 +377,13 @@ class Timetable extends Component
     $this->schedule->save();
 
 
-    $this->schedules = Schedule::all()->sortBy('datetime');
+    // $this->schedules = Schedule::all()->sortBy('datetime');
+    if ( Auth::check() ) {
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+    }else{
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+    }
+    
     foreach ($this->schedules as $row){
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';

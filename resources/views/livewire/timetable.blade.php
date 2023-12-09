@@ -158,7 +158,23 @@
                 <div class="sch_box">
                   <p class="sch_title">
                     <span class="under">{{$schedule->caption}}</span>
-                    <a class="btn" role="button" wire:click="openEditCard({{ $schedule->id }}, '{{ $schedule->caption }}' , '{{ Str::before($schedule->datetime, ' ') }}')"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                    @auth  {{-- ログイン中の場合 --}}
+                      @can('admin')  {{-- 管理者の場合 --}}
+                          <a class="btn" role="button" wire:click="openEditCard({{ $schedule->id }}, '{{ $schedule->caption }}' , '{{ Str::before($schedule->datetime, ' ') }}')">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </a>
+                      @endcan
+                      @can('general')  {{-- 管理者以外の場合 - --}}
+                        @if ($schedule->user_id == Auth::user()->id)
+                          <a class="btn" role="button" wire:click="openEditCard({{ $schedule->id }}, '{{ $schedule->caption }}' , '{{ Str::before($schedule->datetime, ' ') }}')">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </a>
+                        @endif
+                      @endcan
+                    @endauth
+
+                    
                   </p>
                   <p class="sch_tx">
 
@@ -509,11 +525,11 @@
             <div class="mb-3">
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList101">
-                <label class="form-check-label" for="CheckList101">Bring list 01</label>
+                <label class="form-check-label" for="CheckList101">着替え（2日目・3日目は私服も可）</label>
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList102">
-                <label class="form-check-label" for="CheckList102">Bring list 02</label>
+                <label class="form-check-label" for="CheckList102">女子生理用品</label>
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="CheckList103">
@@ -531,19 +547,35 @@
       <div class="mb-3">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList201">
-          <label class="form-check-label" for="CheckList201">しおり</label>
+          <label class="form-check-label" for="CheckList201">しおり・筆記用具</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList202">
-          <label class="form-check-label" for="CheckList202">健康保険証(可能な限り原本を推奨）　<br/>※コピーは使えない場合あり)</label>
+          <label class="form-check-label" for="CheckList202">保険証(原本またはコピー）　<br/>※コピーは認めない病院が多い</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList203">
-          <label class="form-check-label" for="CheckList203">Bring list 03</label>
+          <label class="form-check-label" for="CheckList203">常備薬（酔い止め・風邪薬・下痢止め・解熱剤など）</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="CheckList204">
-          <label class="form-check-label" for="CheckList204">Bring list 04</label>
+          <label class="form-check-label" for="CheckList204">小遣い（自由食の費用は各自負担）</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList205">
+          <label class="form-check-label" for="CheckList205">手袋・マフラー・帽子・耳当て・雨具</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList206">
+          <label class="form-check-label" for="CheckList206">マスク</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList207">
+          <label class="form-check-label" for="CheckList207">携帯電話・充電器</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="CheckList208">
+          <label class="form-check-label" for="CheckList208">鍵（キャリーバッグなど）</label>
         </div>
       </div>
 
@@ -559,11 +591,27 @@
   <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="new_schedule_card">
     <h5 class="card-header">Introduction<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isIntroduction')"></button></h5>
     <div class="card-body">
-      <h5 class="card-title">Introduction</h5>
-        <p class="card-text">A school trip is a school event that gives us a wide range of knowledge and experiences that cannot be obtained during normal school life.</p>
+      <h5 class="card-title">期日及び宿泊先</h5>
+      <p class="card-text">＊期日　令和5年12月13日(水)〜16(土)<dr>＊集合　12月13日(水) 7：30<br>　JR 新山口駅 新幹線口(南口)　1F セブンイレブンの奥<br>＊解散　12月16日(土) 18：33 JR 新山口駅到着予定<br>＊宿泊先　ヒルトン東京ベイ<br>　　　　　〒279-0031 千葉県浦安市舞浜 1-8<br>　 　　　　TEL：047-355-5000</p>
+        
+        <h5 class="card-title">1. はじめに</h5>
+        <p class="card-text">修学旅行は通常の学校生活では得られない広い知識や体験を私たちに与えてくれる学校行事です。この機会を通して、自主性や責任感を養成すると同時に、集団行動のきまり・公衆道徳などを身に付けよう。そして、先生や親友と生活を共にすることで相互理解を深め、楽しい思い出をつくりましょう。修学旅行が意義のあるものに、そして、高校生活の思い出となるように、以下の点に留意しましょう。<br>　＊誠英高校の生徒としての自覚をもって礼節ある行動をとる。<br>　＊集団の中の一人としての役割と責任を忘れず、全体に迷惑をかけないように行動する。<br>　＊修学旅行中は常に「安全」と「健康管理」に心掛ける。</p>
 
-      <h5 class="card-title">bout clothes</h5>
-        <p class="card-text">A Uniforms will be worn on the first and last day. On other days, you may wear casual clothes.</p>
+        <h5 class="card-title">2. 持ち物</h5>
+        <p class="card-text">＊大きなバッグと新幹線に持ち込む小さなバッグ（貴重品および当日必需品）を準備。<br>＊大きなバッグは事前発送。（タグをつける）割れ物は入れないこと。<br>　　荷物の発送：12月12日(火)　7：00〜8：30　講堂前<br>　　帰りの際もホテルより大きなバッグを自宅に発送。<br>　　12月16日(土)　朝：ホテルより発送。
+
+        <h5 class="card-title">3. 服装</h5>
+          <p class="card-text">＊制服を正しく着用すること。<br>＊防寒のため、コート・手袋・マフラー・ネックウォーマーは自由。<br>＊靴は歩きやすいものがよい。<br>＊化粧品・装飾品（ピアス・ネックレス等）など不要なものを装着・持参しないこと。</p>
+        <h5 class="card-title">4. 出発当日</h5>
+        <p class="card-text">＊集合時間・場所　12月13日(水)　7：30　新山口駅新幹線口（南口）１F　〜セブンイレブンの奥〜<br>＊当日事故や病気等でやむを得ず不参加となる場合は、6：30までに引率教員、または担任に連絡すること。<br>＊新幹線の停車時間は1分しかないので速やかに乗降車すること。<br>＊他の車両に移動しないこと。</p>
+
+        <h5 class="card-title">5. 注意事項</h5>
+        <p class="card-text">＊団体行動を心掛けること。（単独行動は慎むこと。）<br>＊時間を厳守すること。<br>＊貴重品の管理は各自で責任をもつこと。<br>＊睡眠を十分にとり、健康管理に気を配ること。<br>＊緊急事態が発生した時には、速やかに引率教員に連絡をとること。<br>＊「しおり」を常に携行し、速やかに行動すること。</p>
+
+        <h5 class="card-title">6. ホテルでの心得</h5>
+        <p class="card-text">＊非常口・避難場所を確認すること。<br>＊オートロックにつき、カードキー忘れに注意すること。<br>＊ロビーや廊下での服装・態度に気をつける。（スリッパ・パジャマ等不可）<br>＊大声で騒がないこと。<br>＊入浴は、カーテンを浴槽の中に入れ、外に水を漏らさないこと。<br>＊部屋の整理整頓を心がけ、忘れ物をしないこと。<br>＊夜更かしなどで体調を崩さないように注意すること。</p>
+        <h5 class="card-title">7. その他</h5>
+        <p class="card-text">＊急なトイレなどで列を離れるときは、必ず先生の許可を得ること。<br>＊携帯電話の電池残量を常時確認し、緊急時に備えること。<br>＊周囲に配慮し、トラブルは避けること。<br>＊面会希望者（家族・親戚に限る）は事前に申し出ること。</p>
     </div>
   </div>
 @endif

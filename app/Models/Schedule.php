@@ -25,7 +25,8 @@ class Schedule extends Model
         'file3',
         'file4',
         'file5',
-        'maplink'
+        'maplink',
+        'user_id',
     ];
 
 
