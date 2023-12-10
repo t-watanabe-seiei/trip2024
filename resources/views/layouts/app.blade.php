@@ -29,7 +29,9 @@
     /* bootstrap modal 用 */
     .modal-lightbox {background-color:unset!important;}
   </style>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <!-- <script src="{{ mix('js/app.js') }}"></script> -->
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+
 
 @livewireStyles
 </head>
@@ -43,11 +45,61 @@
         </main>
     </div>
 
-  <script
+  <!-- <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
     crossorigin="anonymous"
-  ></script>
+  ></script> -->
+
+
+
+
+
+
+
+
+
+  <!-- lighbox 用 modal  -->    
+  <div class="modal fade" id="lightboxModalFullscreen" tabindex="-1" aria-labelledby="lightboxModalFullscreenLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen" data-bs-dismiss="modal" aria-label="Close">
+        <div class="modal-content modal-lightbox">
+          <div class="modal-body d-flex align-items-center justify-content-center">
+            <img src="" class="img-fluid" id="LightboxImage" data-bs-dismiss="modal" aria-label="Close" />
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+
+
+
+
+      <!-- bootstrap CDN -->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+        crossorigin="anonymous"
+      ></script>
+
+
+    <script>
+       // Bootstrap 5 モーダル lightbox
+   var jsCardModal = document.getElementById('lightboxModalFullscreen');
+   jsCardModal.addEventListener('show.bs.modal', function (event) {
+       var button = event.relatedTarget
+       var lightboximage = button.getAttribute('data-bs-lightbox')
+       document.getElementById('LightboxImage').src = lightboximage;
+   })
+   </script>
+
+
+
+
+  
+
+  
   
 </body>
 </html>
