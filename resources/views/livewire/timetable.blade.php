@@ -276,7 +276,7 @@
 
 
                   <p class="text-start">
-                    {!! $schedule->detail !!}
+                    {!! nl2br($schedule->detail) !!}
                   </p>
 
                     @if (!empty($schedule->file1))　　{{-- file1が空じゃなければボタン表示 --}}

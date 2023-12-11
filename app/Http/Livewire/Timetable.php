@@ -62,7 +62,10 @@ class Timetable extends Component
       //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
       // },nl2br(htmlspecialchars($row->detail)));      
 
-      $row->detail = nl2br(htmlspecialchars($row->detail));    
+      //$row->detail = nl2br(htmlspecialchars($row->detail));  
+      $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
+      $replace = '<a href="$1" target="_blank">$1</a>';
+      $row->detail = preg_replace($pattern, $replace, $row->detail);
       
     }
   }
@@ -145,8 +148,12 @@ class Timetable extends Component
       //該当する文字列に処理
       // $row->detail = preg_replace_callback($pattern,function ($matches) {
       //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-      // },nl2br(htmlspecialchars($row->detail)));      
-      $row->detail = nl2br(htmlspecialchars($row->detail));  
+      // },nl2br(htmlspecialchars($row->detail)));    
+      
+      // $row->detail = nl2br(htmlspecialchars($row->detail));  
+      $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
+      $replace = '<a href="$1" target="_blank">$1</a>';
+      $row->detail = preg_replace($pattern, $replace, $row->detail);
     }
 
     // $this->caption = Null;
@@ -279,8 +286,12 @@ class Timetable extends Component
         //該当する文字列に処理
         // $row->detail = preg_replace_callback($pattern,function ($matches) {
         //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-        // },nl2br(htmlspecialchars($row->detail)));      
-        $row->detail = nl2br(htmlspecialchars($row->detail));  
+        // },nl2br(htmlspecialchars($row->detail)));    
+        
+        // $row->detail = nl2br(htmlspecialchars($row->detail));  
+        $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
+        $replace = '<a href="$1" target="_blank">$1</a>';
+        $row->detail = preg_replace($pattern, $replace, $row->detail);
       }
 
       $this->caption = Null;
@@ -396,7 +407,11 @@ class Timetable extends Component
       // $row->detail = preg_replace_callback($pattern,function ($matches) {
       //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
       // },nl2br(htmlspecialchars($row->detail)));      
-      $row->detail = nl2br(htmlspecialchars($row->detail));  
+      // $row->detail = nl2br(htmlspecialchars($row->detail));  
+
+      $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
+      $replace = '<a href="$1" target="_blank">$1</a>';
+      $row->detail = preg_replace($pattern, $replace, $row->detail);
     }
 
     $this->caption = Null;
