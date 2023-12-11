@@ -181,7 +181,7 @@
                   @if (!empty($schedule->image1))　　{{-- image1が空じゃなければ・・・ --}}
 
                     <!-- カルーセルで画像表示　画像をクリックすると、lighbox 用 modal で画像を表示 -->    
-                        <div id="{{ $schedule->image1 }}" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div id="{{ $schedule->image1 }}" class="carousel slide mb-4">
                           <div class="carousel-inner">
                             <div class="carousel-item active">
                               <a 

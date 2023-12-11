@@ -58,9 +58,12 @@ class Timetable extends Component
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
       //該当する文字列に処理
-      $row->detail = preg_replace_callback($pattern,function ($matches) {
-          return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-      },nl2br(htmlspecialchars($row->detail)));      
+      // $row->detail = preg_replace_callback($pattern,function ($matches) {
+      //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
+      // },nl2br(htmlspecialchars($row->detail)));      
+
+      $row->detail = nl2br(htmlspecialchars($row->detail));    
+      
     }
   }
 
@@ -140,9 +143,10 @@ class Timetable extends Component
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
       //該当する文字列に処理
-      $row->detail = preg_replace_callback($pattern,function ($matches) {
-          return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-      },nl2br(htmlspecialchars($row->detail)));      
+      // $row->detail = preg_replace_callback($pattern,function ($matches) {
+      //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
+      // },nl2br(htmlspecialchars($row->detail)));      
+      $row->detail = nl2br(htmlspecialchars($row->detail));  
     }
 
     // $this->caption = Null;
@@ -273,9 +277,10 @@ class Timetable extends Component
         //URL抽出の正規表現
         $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
         //該当する文字列に処理
-        $row->detail = preg_replace_callback($pattern,function ($matches) {
-            return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-        },nl2br(htmlspecialchars($row->detail)));      
+        // $row->detail = preg_replace_callback($pattern,function ($matches) {
+        //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
+        // },nl2br(htmlspecialchars($row->detail)));      
+        $row->detail = nl2br(htmlspecialchars($row->detail));  
       }
 
       $this->caption = Null;
@@ -388,9 +393,10 @@ class Timetable extends Component
       //URL抽出の正規表現
       $pattern = '/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+/';
       //該当する文字列に処理
-      $row->detail = preg_replace_callback($pattern,function ($matches) {
-          return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
-      },nl2br(htmlspecialchars($row->detail)));      
+      // $row->detail = preg_replace_callback($pattern,function ($matches) {
+      //     return '<a href="'.$matches[0].'" target="_blank">'.$matches[0].'</a>';
+      // },nl2br(htmlspecialchars($row->detail)));      
+      $row->detail = nl2br(htmlspecialchars($row->detail));  
     }
 
     $this->caption = Null;
