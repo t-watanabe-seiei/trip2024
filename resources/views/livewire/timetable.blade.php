@@ -156,7 +156,7 @@
               <li>
                 <span class="time">{{ Str::after($schedule->datetime, ' ') }}</span>    <!-- 半角スペースより右が時刻 -->
                 <div class="sch_box">
-                  <p class="sch_title">
+                  <p class="sch_title mt-1">
                     <span class="under">{{$schedule->caption}}</span>
 
                     @auth  {{-- ログイン中の場合 --}}
@@ -178,10 +178,14 @@
                   </p>
                   <p class="sch_tx">
 
+                    <p class="text-start">
+                      {!! nl2br($schedule->detail) !!}
+                    </p>
+
                   @if (!empty($schedule->image1))　　{{-- image1が空じゃなければ・・・ --}}
 
                     <!-- カルーセルで画像表示　画像をクリックすると、lighbox 用 modal で画像を表示 -->    
-                        <div id="{{ $schedule->image1 }}" class="carousel slide mb-4">
+                        <div id="{{ $schedule->image1 }}" class="carousel slide mb-2">
                           <div class="carousel-inner">
                             <div class="carousel-item active">
                               <a 
@@ -275,20 +279,18 @@
 
 
 
-                  <p class="text-start">
-                    {!! nl2br($schedule->detail) !!}
-                  </p>
+
 
                     @if (!empty($schedule->file1))　　{{-- file1が空じゃなければボタン表示 --}}
-                      <a class="btn btn-outline-success btn-sm m-1" role="button" href="storage/{{ $schedule->file1 }}" target="_blank">添付ファイル１</a>
+                      <a class="btn btn-outline-success btn-sm mx-1" role="button" href="storage/{{ $schedule->file1 }}" target="_blank">添付ファイル１</a>
                     @endif
 
                     @if (!empty($schedule->file2))　　{{-- file2が空じゃなければボタン表示 --}}
-                      <a class="btn btn-outline-success btn-sm m-1" role="button" href="storage/{{ $schedule->file2 }}" target="_blank">添付ファイル２</a>
+                      <a class="btn btn-outline-success btn-sm mx-1" role="button" href="storage/{{ $schedule->file2 }}" target="_blank">添付ファイル２</a>
                     @endif
 
                     @if (!empty($schedule->file3))　　{{-- file2が空じゃなければボタン表示 --}}
-                      <a class="btn btn-outline-success btn-sm m-1" role="button" href="storage/{{ $schedule->file3 }}" target="_blank">添付ファイル３</a>
+                      <a class="btn btn-outline-success btn-sm mx-1" role="button" href="storage/{{ $schedule->file3 }}" target="_blank">添付ファイル３</a>
                     @endif
                   </p>
                 </div>
