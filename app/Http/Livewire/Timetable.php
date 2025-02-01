@@ -18,6 +18,7 @@ class Timetable extends Component
   public $path;
   public $schedule_id;
   public $caption;
+  public $cource;
   public $detail;
   public $date;
   public $time;
@@ -48,10 +49,23 @@ class Timetable extends Component
       $user_id = $user->id;
       $user_name = $user->name;
       $user_role = $user->role;
-      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+      
+      // $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+
+      // $this->schedules = Schedule::select(['id','caption','detail','datetime','image1','image2','image3','image4','image5','file1','file2','file3','file4','file5','maplink','created_at','updated_at','user_id','cource',])
+      //   ->selectRaw("CASE WHEN cource is not null THEN substr(datetime,0,INSTR(datetime, ' ')) || ' (' || cource || ')' ELSE substr(datetime,0,INSTR(datetime, ' ')) END as tag")
+      //   ->where('user_id', Auth::user()->id)->orWhere('user_id', null)
+      //   ->get()->sortBy([['tag',true],['datetime',true]]);
+          
     }else{
       // 未ログインの場合
-      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+      // $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+
+      // $this->schedules = Schedule::select(['id','caption','detail','datetime','image1','image2','image3','image4','image5','file1','file2','file3','file4','file5','maplink','created_at','updated_at','user_id','cource',])
+      //   ->selectRaw("CASE WHEN cource is not null THEN substr(datetime,0,INSTR(datetime, ' ')) || '(' || cource || ')' ELSE substr(datetime,0,INSTR(datetime, ' ')) END as tag")
+      //   ->where('user_id', null)->get()->sortBy([['tag',true],['datetime',true]]);
     }
     // $this->schedules = Schedule::all()->sortBy('datetime');
     foreach ($this->schedules as $row){
@@ -78,39 +92,44 @@ class Timetable extends Component
 
   public function updatedImage1()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedImage2()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedImage3()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedFile1()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedFile2()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedFile3()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedImages()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedFiles()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
   public function updatedDate()
   {   
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
+  }
+  public function updatedCource()
+  {
+      \Log::debug('updating count   ' . $this->cource);
+      $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);
   }
 
   public function imageDelete()
@@ -119,7 +138,7 @@ class Timetable extends Component
     $this->image2 = Null;
     $this->image3 = Null;
     $this->images = [];
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);    //アコーディオンOPEN
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);    //アコーディオンOPEN
   }
 
   public function fileDelete(){
@@ -127,7 +146,7 @@ class Timetable extends Component
     $this->file2 = Null;
     $this->file3 = Null;
     $this->files = [];
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);    //アコーディオンOPEN
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);    //アコーディオンOPEN
   }
 
   public function deleteSchedule($id){
@@ -137,9 +156,9 @@ class Timetable extends Component
 
     // $this->schedules = Schedule::all()->sortBy('datetime');
     if ( Auth::check() ) {
-      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
     }else{
-      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
     }
     
     foreach ($this->schedules as $row){
@@ -169,7 +188,7 @@ class Timetable extends Component
     // $this->files = [];
     //reset_new_shedule（入力時に使ったデータ消去）
     // $this->dispatchBrowserEvent('reset_edit_shedule',['currentDate' => $this->date]);
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);    //アコーディオンOPEN
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);    //アコーディオンOPEN
 
     $this->isEditScheduleCard = false;    //Editカードを閉じる
   }
@@ -188,6 +207,7 @@ class Timetable extends Component
       $this->file1 = $this->schedule->file1;
       $this->file2 = $this->schedule->file2;
       $this->file3 = $this->schedule->file3;
+      $this->cource = $this->schedule->cource;
 
       if($this->isNewScheduleCard){
         $this->isNewScheduleCard = false;
@@ -195,7 +215,7 @@ class Timetable extends Component
       $this->isEditScheduleCard = true;      
 
       //jsのイベントを発火させる
-      $this->dispatchBrowserEvent('show_accordion',['currentDate' => Str::before($this->schedule->datetime, ' '),'currentId' => $this->schedule_id]);
+      $this->dispatchBrowserEvent('show_accordion',['currentDate' => Str::before($this->schedule->datetime, ' '),'currentId' => $this->schedule_id,'currentCource' => $this->cource]);
   }
 
   public function newSave()
@@ -204,12 +224,14 @@ class Timetable extends Component
       $this->validate([
         'caption' => 'required',
         'detail' => 'required',
+        'cource' => 'required',
         'images.*' => 'image|max:10240', // 最大１0ＭＢ
         'files.*' => 'max:10240', // 最大１0ＭＢ
       ],
       [
         'caption.required' => 'captionを入力してください',
         'detail.required' => '詳細を入力してください',
+        'cource.required' => 'courceを入力してください',
         'images.*.image' => '画像ファイルを選択してください。',
         'images.*.max:10240' => '画像ファイルサイズが大きすぎ',
         'files.*.max:10240' => 'ファイルサイズが大きすぎです',
@@ -218,6 +240,7 @@ class Timetable extends Component
 
       $schedule = new Schedule();
       $schedule->caption = $this->caption;
+      $schedule->cource = $this->cource;
       $schedule->detail = $this->detail;
       $schedule->datetime = $this->date . " " . $this->time;
       if(Gate::allows('admin')){                   //追記
@@ -275,9 +298,9 @@ class Timetable extends Component
 
       // $this->schedules = Schedule::all()->sortBy('datetime');
       if ( Auth::check() ) {
-        $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+        $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
       }else{
-        $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+        $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
       }
     
       foreach ($this->schedules as $row){
@@ -305,13 +328,14 @@ class Timetable extends Component
       $this->images = [];
       $this->files = [];
       //reset_new_shedule（入力時に使ったデータ消去）
-      $this->dispatchBrowserEvent('reset_new_shedule',['currentDate' => $this->date,'currentTime' => $this->time]);
-      $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);    //アコーディオンOPEN
+      $this->dispatchBrowserEvent('reset_new_shedule',['currentDate' => $this->date,'currentTime' => $this->time,'currentCource' => $this->cource]);
+      $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);    //アコーディオンOPEN
   }
 
   public function editSave()
   {
     $this->schedule->caption = $this->caption;
+    $this->schedule->cource = $this->cource;
     $this->schedule->detail = $this->detail;
     $this->schedule->datetime = $this->date . " " . $this->time;
 
@@ -395,9 +419,9 @@ class Timetable extends Component
 
     // $this->schedules = Schedule::all()->sortBy('datetime');
     if ( Auth::check() ) {
-      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy('datetime');
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
     }else{
-      $this->schedules = Schedule::where('user_id', null)->get()->sortBy('datetime');
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
     }
     
     foreach ($this->schedules as $row){
@@ -427,7 +451,7 @@ class Timetable extends Component
     $this->files = [];
     //reset_new_shedule（入力時に使ったデータ消去）
     // $this->dispatchBrowserEvent('reset_edit_shedule',['currentDate' => $this->date]);
-    $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);    //アコーディオンOPEN
+    $this->dispatchBrowserEvent('show_accordion',['currentCource' => $this->cource]);    //アコーディオンOPEN
 
     $this->isEditScheduleCard = false;    //Editカードを閉じる
   }

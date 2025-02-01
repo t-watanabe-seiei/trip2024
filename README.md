@@ -691,6 +691,7 @@ Mixed Content: The page at 'https://(省略)/' was loaded over HTTPS, but reques
 
 
 
+2025.1.11 ここ以降で、2024年度修学旅行に対応
 
 
 # xserverでの公開
@@ -758,11 +759,69 @@ Laravelプロジェクト直下のpublicフォルダを、公開フォルダに�
 ### シンボリックリンクの作成 以下のコマンドで/public ディレクトリの下に storage ディレクトリが作成され、/storage/app/public へシンボリックリンクが張られます。
       $ php artisan storage:link
 
+2025.1.12 ココマデ済　ここ以降で、2024年度修学旅行に対応
+
+
+### スケジュールテーブルに列を追加
+    php artisan make:migration add_schedules_table_1columns  --table=schedules
+
+            Schema::table('schedules', function (Blueprint $table) {
+                //
+                $table->string('cource')->nullable();
+            });
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+###
+SELECT id,caption,detail,datetime,cource,
+(CASE
+    WHEN cource is not null THEN substr(datetime,0,INSTR(datetime, ' ')) || '　(' || cource || ')'
+    ELSE substr(datetime,0,INSTR(datetime, ' '))
+END) as tag
+FROM "schedules"
+order by cource , datetime
+
+###
+Laravelのクエリビルダの中にCASE文を使いたい場合の書き方
+
+下記コードのようにselectRaw()を使うことで、クエリビルダの記述中に生SQL文を使うことが可能です。
+
+例）Usersテーブルにgender_idというカラムがり、gender_idの値から性別を文字列に変換して取得したいと思った場合の処理。
+$result = $users->select('name')
+                  ->selectRaw("(CASE gender_id WHEN 0 THEN "男性" WHEN 1 THEN "女性" END) AS gender")
+                  ->get();
+
+
+
+
+### 2025/01/26 timetable.blade.php 4箇所
+
+//該当日付のアコーディオンを開く 関連
+  old: document.getElementById('id_' + event.detail.currentDate); 
+# new: document.getElementById('id_' + event.detail.currentTag);
+
+  old: id="id_{{ Str::before($schedule->datetime, ' ') }}" 
+# new: id="id_{{ $schedule->tag }}" 
+
+### 2025/01/26 Timetable.php 18箇所
+  old: $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date]);
+# new: $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date,'currentTag' => $this->tag]);
+
+### 2025/02/01 Timetable.php 18箇所
+// $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+   $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+   ※sort がうまく機能しないので、緊急措置✅
 
 
 

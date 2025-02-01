@@ -27,6 +27,7 @@ class Schedule extends Model
         'file5',
         'maplink',
         'user_id',
+        'cource',
     ];
 
 
@@ -48,6 +49,7 @@ class Schedule extends Model
             'file4' =>  $request->file4,
             'file5' =>  $request->file5,
             'maplink' =>  $request->maplink,        
+            'cource' =>  $request->cource,
         ]);
     }
 }
