@@ -78,7 +78,7 @@ class Timetable extends Component
 
       //$row->detail = nl2br(htmlspecialchars($row->detail));  
       $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
-      $replace = '<a href="$1" target="_blank">$1</a>';
+      $replace = '<div class="d-block text-truncate"><a href="$1" target="_blank">$1</a></div>';
       $row->detail = preg_replace($pattern, $replace, $row->detail);
       
     }
