@@ -50,8 +50,8 @@ class Timetable extends Component
       $user_name = $user->name;
       $user_role = $user->role;
       
-      // $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
-      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+      $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+      // $this->schedules = Schedule::where('user_id', Auth::user()->id)->orWhere('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
 
       // $this->schedules = Schedule::select(['id','caption','detail','datetime','image1','image2','image3','image4','image5','file1','file2','file3','file4','file5','maplink','created_at','updated_at','user_id','cource',])
       //   ->selectRaw("CASE WHEN cource is not null THEN substr(datetime,0,INSTR(datetime, ' ')) || ' (' || cource || ')' ELSE substr(datetime,0,INSTR(datetime, ' ')) END as tag")
@@ -60,8 +60,8 @@ class Timetable extends Component
           
     }else{
       // 未ログインの場合
-      // $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
-      $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+      $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+      // $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
 
       // $this->schedules = Schedule::select(['id','caption','detail','datetime','image1','image2','image3','image4','image5','file1','file2','file3','file4','file5','maplink','created_at','updated_at','user_id','cource',])
       //   ->selectRaw("CASE WHEN cource is not null THEN substr(datetime,0,INSTR(datetime, ' ')) || '(' || cource || ')' ELSE substr(datetime,0,INSTR(datetime, ' ')) END as tag")

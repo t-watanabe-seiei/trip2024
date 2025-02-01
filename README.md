@@ -819,8 +819,8 @@ $result = $users->select('name')
 # new: $this->dispatchBrowserEvent('show_accordion',['currentDate' => $this->date,'currentTag' => $this->tag]);
 
 ### 2025/02/01 Timetable.php 18箇所
-// $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
-   $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
+  old: $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
+# new: $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
    ※sort がうまく機能しないので、緊急措置✅
 
 
@@ -829,3 +829,4 @@ $result = $users->select('name')
 (※Laravel9.x期間の途中でlaravel-mix → viteに変更なんて破棄的変更を容赦なくやったので初心者は当然混乱。)
 
 
+git pull git@github.com:t-watanabe-seiei/trip2024.git main
