@@ -63,9 +63,14 @@
                     <a class="nav-link btn" role="button" wire:click="$toggle('isWhatToBring')">What to bring</a>
                   </li>
 
-                  <li class="nav-item mx-3">
+                  <!-- <li class="nav-item mx-3">
                     <a class="nav-link disabled btn" role="button" >allowance</a>
+                  </li> -->
+
+                  <li class="nav-item mx-3">
+                    <a class="nav-link btn" role="button" wire:click="$toggle('isContactAdress')">緊急連絡先 <span class="badge text-bg-success">new</span></a>
                   </li>
+
               </ul>
 
               <!-- Right Side Of Navbar -->
@@ -750,7 +755,30 @@
 <!-- *******************Introduction カード end********************* -->
 
 
+<!--  *****************contactAddress カード************************************************ -->
+@if ($isContactAdress)
+  <div class="card mt-1 schedule_card" style="position: sticky;top: 60px;" id="contact_adress">
+    <h5 class="card-header">緊急連絡先<button type="button" class="btn-close float-end" aria-label="Close" wire:click="$toggle('isContactAdress')"></button></h5>
+    <div class="card-body">
 
+      <h6 class="card-title">引率教員１【※大阪】</h6>
+      <p class="card-text">080-5784-2309</p>
+
+      <h6 class="card-title">引率教員２【※大阪】</h6>
+      <p class="card-text">080-5784-2310</p>
+
+      <h6 class="card-title">引率教員３【※福井】</h6>
+      <p class="card-text">080-5784-2311</p>
+
+      <h6 class="card-title">引率教員４【※スノボ】</h6>
+      <p class="card-text">080-5784-2312</p>
+      
+      <h6 class="card-title">日本旅行小林さん</h6>
+      <p class="card-text">090-9136-4651</p>
+    </div>
+  </div>
+@endif
+<!-- ******************* contactAddress カード end********************* -->
 
 
 

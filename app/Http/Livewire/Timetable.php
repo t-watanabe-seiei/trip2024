@@ -35,6 +35,8 @@ class Timetable extends Component
   public $isEditScheduleCard = false;
   public $isWhatToBring = false;
   public $isIntroduction = false;
+  public $isContactAdress = false;
+
 
   public $user_id;
   public $user_name;

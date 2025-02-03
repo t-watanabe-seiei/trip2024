@@ -821,8 +821,9 @@ $result = $users->select('name')
 ### 2025/02/01 Timetable.php 18箇所
   old: $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['datetime',true]]);
 # new: $this->schedules = Schedule::where('user_id', null)->get()->sortBy([['cource',true],['id',true]]);
-   ※sort がうまく機能しないので、緊急措置✅
+   ※sort がうまく機能しないので、緊急措置✅→やっぱり戻す
 
+### 2025/02/04 @if ($isContactAdress) 追加
 
 
 ## npm  run dev　　(npm run dev　このコマンドで、「JSやCSSもビルドされる」)
