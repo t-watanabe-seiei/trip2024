@@ -762,19 +762,19 @@
     <div class="card-body">
 
       <h6 class="card-title">引率教員１【※大阪】</h6>
-      <p class="card-text">080-5784-2309</p>
+      <p class="card-text"><a href="tel:080-5784-2309">080-5784-2309</a></p>
 
       <h6 class="card-title">引率教員２【※大阪】</h6>
-      <p class="card-text">080-5784-2310</p>
+      <p class="card-text"><a href="tel:080-5784-2310">080-5784-2310</a></p>
 
       <h6 class="card-title">引率教員３【※福井】</h6>
-      <p class="card-text">080-5784-2311</p>
+      <p class="card-text"><a href="tel:080-5784-2311">080-5784-2311</a></p>
 
       <h6 class="card-title">引率教員４【※スノボ】</h6>
-      <p class="card-text">080-5784-2312</p>
+      <p class="card-text"><a href="tel:080-5784-2312">080-5784-2312</a></p>
       
       <h6 class="card-title">日本旅行小林さん</h6>
-      <p class="card-text">090-9136-4651</p>
+      <p class="card-text"><a href="tel:090-9136-4651">090-9136-4651</a></p>
     </div>
   </div>
 @endif
